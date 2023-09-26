@@ -3,14 +3,16 @@ const { User } = require("./models/user");
 const { Book } = require("./models/book");
 const bookrouter = require("./routes/booksrouter");
 const { sequelize } = require("./utils/database");
+const cors = require("cors");
 const app = express();
-
+app.use(cors());
 app.use(express.json());
-app.use(async (req, res, next) => {
-  console.log("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
-  const response = await User.create({ name: "Feraz" });
-  req.user = response;
-});
+
+// app.use(async (req, res, next) => {
+//   console.log("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
+//   const response = await User.create({ name: "Feraz" });
+//   req.user = response;
+// });
 const port = 3500;
 
 app.use("/api/v1/book", bookrouter);
